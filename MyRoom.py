@@ -45,9 +45,23 @@ class MyRoom(SliderWidget):
 
 
 if __name__ == "__main__":
-    from Projeto.app import readDatabase
-
-    data = readDatabase()
+    data = [
+        {},
+        {},
+        {
+            "id": "cozinha1",
+            "name": "Cozinha",
+            "devices": [
+                {
+                    "id": "sensor1",
+                    "topic": "",
+                    "type": "sensor",
+                    "name": "Proximity Sensor",
+                    "brightness": None
+                }
+            ]
+        }
+    ]    
 
     room = data["MyHome"][3]
 

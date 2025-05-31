@@ -45,7 +45,7 @@
                     "topic": "room2/led",
                     "type": "lamp",
                     "name": "Hall Lamp",
-                    "brightness": 0
+                    "brightness": 60
                 }
             ]
         }

@@ -2,7 +2,6 @@
 import ssl
 import time
 import json
-import streamlit as st
 
 import paho.mqtt.client as mqtt_client
 from paho.mqtt.client import CallbackAPIVersion
@@ -79,24 +78,10 @@ if __name__ == "__main__":
     client_id_publish = "yapublish"
 
     # Caminhos para seus certificados
-    cert = st.secrets["mqtt_certs"]["cert"]
-    private_key = st.secrets["mqtt_certs"]["private_key"]
-    public_key = st.secrets["mqtt_certs"]["public_key"]
-
-    # Salvar temporariamente (se o cliente MQTT exigir caminho de arquivo)
-    with open("cert.pem", "w") as f:
-        f.write(cert)
-
-    with open("private.key", "w") as f:
-        f.write(private_key)
-
-    with open("public.key", "w") as f:
-        f.write(public_key)
-
     aws_auth = {
-        "ca": "cert.pem",
-        "cert": "private.key",
-        "private": "public.key"
+        "ca": "./certs/root-CA.crt",
+        "cert": "./certs/edudardo_thing.cert.pem",
+        "private": "./certs/edudardo_thing.private.key"
     }
 
     mqtt_publish = MQTT_Publish(broker, port, client_id_publish, aws_auth)
