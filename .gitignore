@@ -1,0 +1,8 @@
+.streamlit
+/MQTT/certs
+Teste.py
+
+**/__pycache__/
+
+*.pem
+*.key

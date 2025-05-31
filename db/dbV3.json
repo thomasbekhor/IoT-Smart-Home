@@ -1,0 +1,98 @@
+{
+    "MyHome": [
+        {
+            "id": "sala1",
+            "name": "Sala",
+            "devices": []
+        },
+        {
+            "id": "banheiro1",
+            "name": "Banheiro",
+            "devices": []
+        },
+        {
+            "id": "cozinha1",
+            "name": "Cozinha",
+            "devices": [
+                {
+                    "id": "sensor1",
+                    "topic": "",
+                    "type": "sensor",
+                    "name": "Proximity Sensor",
+                    "brightness": null
+                }
+            ]
+        },
+        {
+            "id": "quarto1",
+            "name": "Quarto 1",
+            "devices": [
+                {
+                    "id": "lampada1",
+                    "topic": "room1/led",
+                    "type": "lamp",
+                    "name": "Desk Lamp",
+                    "brightness": 90
+                }
+            ]
+        },
+        {
+            "id": "quarto2",
+            "name": "Quarto 2",
+            "devices": [
+                {
+                    "id": "lampada2",
+                    "topic": "room2/led",
+                    "type": "lamp",
+                    "name": "Hall Lamp",
+                    "brightness": 0
+                }
+            ]
+        }
+    ],
+    "Scripts": [
+        {
+            "id": "evening_light",
+            "name": "Evening Light",
+            "is_active": true,
+            "source": {
+                "type": "schedule",
+                "cron": "0 18 * * *"
+            },
+            "actuator": {
+                "room": "Room1",
+                "device": "Lamp2"
+            },
+            "action": {
+                "operation": "set_brightness",
+                "params": {
+                    "level": 75
+                }
+            }
+        },
+        {
+            "id": "hallway_motion_on",
+            "name": "Hallway Motion Light",
+            "is_active": true,
+            "source": {
+                "type": "sensor",
+                "room": "Room2",
+                "device": "Sensor1",
+                "sensor_type": "proximity",
+                "threshold": 30,
+                "compare": "gt"
+            },
+            "actuator": {
+                "room": "Room2",
+                "device": "Lamp1"
+            },
+            "action": {
+                "operation": "set_brightness",
+                "params": {
+                    "brightness": 100
+                }
+            }
+        }
+    ],
+    "Timezone": "America/Sao_Paulo"
+}

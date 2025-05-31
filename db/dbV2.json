@@ -1,0 +1,52 @@
+{
+	"MyHome":{
+		"rooms": [
+			{ "id": 1, "name": "Room1" },
+			{ "id": 2, "name": "Room2" }
+		],
+		"devices": [
+			{
+				"id": 10,
+				"room_id": 1,
+				"name": "Lamp1",
+				"type": "lamp",
+				"intensity": 0
+			},
+			{
+				"id": 11,
+				"room_id": 1,
+				"name": "Lamp2",
+				"type": "lamp",
+				"intensity": 0
+			}
+		],
+		"scripts": [
+			{
+				"id": 100,
+				"name": "Evening Light",
+				"is_active": true,
+				"trigger_type": "schedule",
+				"trigger_cfg": {
+					"cron": "0 18 * * *",
+					"timezone": "America/Sao_Paulo"
+				}
+			}
+		],
+		"script_rooms": [{ "script_id": 100, "room_id": 1 }],
+		"script_devices": [{ "script_id": 100, "device_id": 11 }],
+		"script_actions": [
+			{
+				"script_id": 100,
+				"step_index": 1,
+				"action": "set_status",
+				"params": { "value": true }
+			},
+			{
+				"script_id": 100,
+				"step_index": 2,
+				"action": "set_brightness",
+				"params": { "level": 75 }
+			}
+		]
+	}
+}

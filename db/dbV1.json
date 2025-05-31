@@ -1,0 +1,81 @@
+{
+    "MyHome": {
+        "Sala": {
+            "Lamp1": {
+                "Name": "Lamp1",
+				"Brightness": 0
+			},
+			"Lamp2": {
+                "Name": "Lamp2",
+				"Brightness": 0
+			}
+		},
+        "Cozinha": {},
+        "Banheiro": {},
+		"Quarto 1": {
+			"Sensor1": {
+				"Name": "ProximitySensor",
+				"Brightness": null
+			},
+			"Lamp1": {
+				"Name": "HallLamp",
+				"Brightness": 0
+			}
+		},
+		"Quarto 2": {}
+	},
+
+	"Scripts": [
+		{
+			"id": "evening_light",
+			"name": "Evening Light",
+			"is_active": true,
+
+			"source": {
+				"type": "schedule",
+				"cron": "0 18 * * *"
+			},
+
+			"actuator": {
+				"room": "Room1",
+				"device": "Lamp2"
+			},
+
+			"action": {
+				"operation": "set_brightness",
+				"params": {
+					"level": 75
+				}
+			}
+		},
+
+		{
+			"id": "hallway_motion_on",
+			"name": "Hallway Motion Light",
+			"is_active": true,
+
+			"source": {
+				"type": "sensor",
+				"room": "Room2",
+				"device": "Sensor1",
+				"sensor_type": "proximity",
+				"threshold": 30,
+				"compare": "gt"
+			},
+
+			"actuator": {
+				"room": "Room2",
+				"device": "Lamp1"
+			},
+
+			"action": {
+				"operation": "set_status",
+				"params": {
+					"value": true
+				}
+			}
+		}
+	],
+
+	"Timezone": "America/Sao_Paulo"
+}
